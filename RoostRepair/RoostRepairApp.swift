@@ -2,16 +2,23 @@
 //  RoostRepairApp.swift
 //  RoostRepair
 //
-//  Created by Andres Ivanov on 02/07/2026.
+//  Entry point. Creates the app-wide @EnvironmentObjects (settings + data store)
+//  and shows RootView, which drives Splash -> Onboarding -> Main.
 //
 
 import SwiftUI
 
 @main
 struct RoostRepairApp: App {
+    @StateObject private var settings = AppSettings()
+    @StateObject private var store = FarmStore()
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RootView()
+                .environmentObject(settings)
+                .environmentObject(store)
+                .accentColor(Theme.amberDeep)
         }
     }
 }
